@@ -1,12 +1,11 @@
-# Oracle PDB Administration Assignment
+# Oracle PDB Administration Assignment 2
 
 ## Assignment Overview
-
-This assignment demonstrates practical administration of Oracle Multitenant Architecture using **Oracle 21c XE**. It covers the creation and configuration of permanent and temporary Pluggable Databases (PDBs), user management, troubleshooting connectivity issues, and monitoring via Oracle Enterprise Manager (EM) Express.
+This individual practical assignment demonstrates hands-on administration of Oracle Multitenant Architecture. It covers the creation of permanent and temporary Pluggable Databases (PDBs), user management, access via Oracle Enterprise Manager (EM) Express, and professional documentation using GitHub.
 
 **Student:** Egide  
 **Student ID:** 31756-2025  
-**Course:** DPR400210 – Database Programming  
+**Course:** C11665 – DPR400210: Database Programming  
 **Instructor:** Eric Maniraguha  
 **Date:** June 29, 2026  
 
@@ -22,64 +21,57 @@ This assignment demonstrates practical administration of Oracle Multitenant Arch
 | **Container Database (CDB)** | `XE` |
 | **EM Express Port** | 5500 (HTTPS) |
 
-![Environment Details](Environment%20details.png)
-![Current Environment](Current%20Environment%20of%20db.png)
+![Environment Details](screenshots/Environment%20details.png)
 
 ---
 
 ## Task 1: Create and Configure Permanent PDB
 
-### PDB Information
-- **PDB Name:** `Eg_pdb_31756_2025`
-- **Admin User:** `pdb_admin` 
-- **Application User:** `Egide_plsqlaua_31756_2025`
+### Naming Convention (Applied)
+- **PDB Name:** `Eg_pdb_31756_2025` *(Format: FirstTwoLetters_pdb_StudentID)*
+- **Admin User:** `pdb_admin` (created during PDB creation)
+- **Application User:** `Egide_plsqlauca_31756_2025` *(Format: FirstName_plsqlauca_StudentID)*
 
-### User Information
-- **Username:** `Egide_plsqlaua_31756_2025`
-- **Password:** `egide@2021`
-- **Privileges Granted:** `CONNECT`, `RESOURCE`, `CREATE SESSION`, `CREATE TABLE`, `CREATE VIEW`, `CREATE PROCEDURE`, `CREATE SEQUENCE`, `DBA`
+### Privileges Granted
+`CONNECT`, `RESOURCE`, `CREATE SESSION`, `CREATE TABLE`, `CREATE VIEW`, `CREATE PROCEDURE`, `CREATE SEQUENCE`, `DBA`
 
 ### Process Overview
-
-1. **Connect as SYSDBA to the Root Container** and create the PDB.
-2. **Open the PDB** and save its state.
-3. **Switch to the new PDB** and create the application user.
-4. **Grant necessary privileges** to the user.
-5. **Test login** using the full connect descriptor (to bypass TNS issues).
+1. Connected as SYSDBA to the Root Container (`CDB$ROOT`).
+2. Executed `CREATE PLUGGABLE DATABASE` with Windows-specific `FILE_NAME_CONVERT`.
+3. Opened the PDB and saved its state (`ALTER PLUGGABLE DATABASE ... OPEN; SAVE STATE;`).
+4. Switched to the new PDB and created the user `Egide_plsqlauca_31756_2025`.
+5. Granted the required privileges.
+6. Verified login using the Full Connect Descriptor (to bypass local TNS resolution issues).
 
 ### Screenshots
 
 | Step | Screenshot |
 |------|------------|
-| PDB Creation Command | ![PDB Creation](pdb_creation.png) |
-| Created PDB Information | ![Created PDB Info](created%20pdb%20information.png) |
-| Verify and Open the PDB | ![Verify and Open](Verify%20and%20Open%20the%20PDB.png) |
-| User Creation | ![User Creation](user_creation.png) |
-| Privileges Granted | ![Privileges](Show%20the%20privilege%20listings..png) |
-| Successful Login Test | ![User Login](user_login.png) |
+| PDB Creation | ![PDB Creation](screenshots/pdb_creation.png) |
+| User Creation | ![User Creation](screenshots/user_creation.png) |
+| Successful Login | ![User Login](screenshots/user_login.png) |
 
 ---
 
-## Task 2: Manage Temporary PDB (Create and Delete)
+## Task 2: Create and Delete Temporary PDB
 
-This task involved creating a temporary PDB named `Eg_to_delete_pdb_31756_2025` and then dropping it.
+### Naming Convention (Applied)
+- **Temporary PDB Name:** `Eg_to_delete_pdb_31756_2025` *(Format: FirstTwoLetters_to_delete_pdb_StudentID)*
 
 ### Process Overview
-
-1. **Create the Temporary PDB** from the Root Container (`CDB$ROOT`).
-2. **Verify** the PDB exists.
-3. **Open** the PDB to confirm functionality.
-4. **Drop (Delete)** the PDB permanently using `INCLUDING DATAFILES`.
-5. **Confirm** the PDB is removed.
+1. Connected as SYSDBA to `CDB$ROOT`.
+2. Created the temporary PDB using the correct Windows seed path.
+3. Verified the PDB existed using `SELECT name FROM v$pdbs`.
+4. Opened the PDB to ensure it was functional.
+5. Dropped the PDB permanently using `DROP PLUGGABLE DATABASE ... INCLUDING DATAFILES;`.
+6. Confirmed deletion by querying `v$pdbs` (returned no rows).
 
 ### Screenshots
 
 | Step | Screenshot |
 |------|------------|
-| Temporary PDB Creation | ![Temp Create](temporary_pdb_creation.png) |
-| Verify Existence | ![Verify Temp](Verify%20Existence%20Temporary%20PDB.png) |
-| Open the Temporary PDB | ![Open Temp](Open%20the%20Temporary%20PDB.png) |
-| Confirm Deletion (Drop) | ![Drop Temp](Confirm%20Deletion.png) |
+| Temporary PDB Creation | ![Temp Create](screenshots/temporary_pdb_creation.png) |
+| Temporary PDB Deletion | ![Temp Delete](screenshots/temporary_pdb_deletion.png) |
 
 ---
 
@@ -88,30 +80,50 @@ This task involved creating a temporary PDB named `Eg_to_delete_pdb_31756_2025` 
 ### Access Information
 - **URL:** `https://localhost:5500/em`
 - **Username:** `system`
-- **Password:** (Password set during Oracle XE installation)
-- **Container:** `Eg_pdb_31756_2025`
+- **Container Selected:** `Eg_pdb_31756_2025`
 
 ### Process Overview
-
-1. **Access EM Express** via the browser (bypass the self-signed certificate warning).
-2. **Log in** with the `system` user.
-3. **Select** the `Eg_pdb_31756_2025` container.
-4. Explore the dashboard to monitor performance, storage, and security.
+1. Accessed EM Express via browser (bypassed the self-signed certificate privacy error).
+2. Logged in with the `system` user.
+3. Selected the `Eg_pdb_31756_2025` container upon login.
+4. Explored the dashboard to view database status, instance details, and PDB information.
 
 ### Screenshots
 
 | Step | Screenshot |
 |------|------------|
-| EM Express Dashboard | ![OEM Dashboard](oem_dashboard.png) |
-| Instance Details | ![Instance Details](nstance%20details.png) |
+| OEM Dashboard | ![OEM Dashboard](screenshots/oem_dashboard.png) |
 
 ---
 
-## Challenges Encountered & Resolutions
+## Challenges Encountered & Solutions
 
 ### 1. TNS Connectivity Issue (ORA-12154)
-- **Problem:** `sqlplus` failed with `ORA-12154` while `tnsping` worked.
-- **Root Cause:** Two different Oracle homes existed (`OraDB21Home1` vs `dbhomeXE`). `sqlplus` was looking at the wrong `tnsnames.ora`.
-- **Resolution:** Used the **Full Connect Descriptor** to bypass TNS entirely:
-  ```sql
-  CONNECT Egide_plsqlaua_31756_2025/"egide@2021"@"(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=eg_pdb_31756_2025)))";
+- **Problem:** `sqlplus` failed to resolve the connect identifier even though `tnsping` worked.
+- **Root Cause:** Two different Oracle homes existed on the machine (`OraDB21Home1` vs `dbhomeXE`). `tnsping` used one, but `sqlplus` defaulted to the other which lacked the TNS entry.
+- **Solution:** Used the **Full Connect Descriptor** to bypass `tnsnames.ora` entirely, ensuring consistent connectivity.
+
+### 2. ORA-65040 (Operation not allowed from within a PDB)
+- **Problem:** Attempted to run `CREATE PLUGGABLE DATABASE` while connected to a PDB.
+- **Solution:** Reconnected as `SYSDBA` to the root container (`CDB$ROOT`) and executed the DDL successfully.
+
+### 3. ORA-65005 (Invalid File Name Pattern)
+- **Problem:** Used Linux-style paths (`/u01/...`) for `FILE_NAME_CONVERT` on a Windows machine.
+- **Solution:** Updated the source path to match the actual Windows seed location: `C:\APP\PC\PRODUCT\21C\ORADATA\XE\PDBSEED\`.
+
+---
+
+## Lessons Learned
+
+- **Oracle Multitenant Architecture:** Understood the clear distinction between the Root Container (CDB) and Pluggable Databases (PDBs), especially regarding where administrative DDL commands must be executed.
+- **Troubleshooting:** Gained practical experience in diagnosing and resolving TNS resolution conflicts caused by multiple Oracle homes.
+- **Documentation:** Learned the importance of precise screenshot naming and folder structuring for professional GitHub submissions.
+
+---
+
+## Integrity Statement
+
+> *"I confirm that this assignment represents my own practical work, screenshots, and documentation. All external resources consulted have been properly acknowledged. The PDBs, users, and configurations shown in this repository were created and managed entirely by me."*
+
+**Egide**  
+**Student ID: 31756-2025**
