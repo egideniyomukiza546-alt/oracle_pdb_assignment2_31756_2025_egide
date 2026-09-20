@@ -1,13 +1,9 @@
 # Oracle PDB Administration 
 
-## Assignment Overview
-This individual practical assignment demonstrates hands-on administration of Oracle Multitenant Architecture. It covers the creation of permanent and temporary Pluggable Databases (PDBs), user management, access via Oracle Enterprise Manager (EM) Express, and professional documentation using GitHub.
+## Overview
+This individual practical demonstrates hands-on administration of Oracle Multitenant Architecture. It covers the creation of permanent and temporary Pluggable Databases (PDBs), user management, access via Oracle Enterprise Manager (EM) Express, and professional documentation using GitHub.
 
-**Student:** Egide  
-**Student ID:** 31756-2025  
-**Course:** C11665 – DPR400210: Database Programming  
-**Instructor:** Eric Maniraguha  
-**Date:** June 29, 2026  
+
 
 ---
 
@@ -123,7 +119,7 @@ This individual practical assignment demonstrates hands-on administration of Ora
 
 ## Integrity Statement
 
-> *"I confirm that this assignment represents my own practical work, screenshots, and documentation. All external resources consulted have been properly acknowledged. The PDBs, users, and configurations shown in this repository were created and managed entirely by me."*
+> *"I confirm that this IS my own practical work, screenshots, and documentation. All external resources consulted have been properly acknowledged. The PDBs, users, and configurations shown in this repository were created and managed entirely by me."*
 
-**Egide**  
-**Student ID: 31756-2025**
+**Egide NIYOMUKIZA**  
+
