@@ -1,4 +1,4 @@
-# Oracle PDB Administration Assignment 2
+# Oracle PDB Administration 
 
 ## Assignment Overview
 This individual practical assignment demonstrates hands-on administration of Oracle Multitenant Architecture. It covers the creation of permanent and temporary Pluggable Databases (PDBs), user management, access via Oracle Enterprise Manager (EM) Express, and professional documentation using GitHub.
